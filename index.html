@@ -324,7 +324,6 @@
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#certifications">Certifications</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleNav()">
@@ -405,7 +404,7 @@
   <div class="fade-in">
     <div class="section-label">Expertise</div>
     <h2 class="section-title">Technical Skills</h2>
-    <p class="section-sub">Tools and technologies I use to investigate, detect, and respond to threats.</p>
+    <p class="section-sub">Tools and technologies I actually use in my investigations and lab projects.</p>
   </div>
   <div class="skills-grid fade-in">
     <div class="skill-category">
@@ -413,9 +412,10 @@
       <div class="skill-tags">
         <span class="skill-tag">Wireshark</span>
         <span class="skill-tag">Nmap</span>
-        <span class="skill-tag">Tcpdump</span>
-        <span class="skill-tag">NetworkMiner</span>
-        <span class="skill-tag">Zeek</span>
+        <span class="skill-tag">Netstat</span>
+        <span class="skill-tag">Nslookup</span>
+        <span class="skill-tag">Ping</span>
+        <span class="skill-tag">Tracert</span>
       </div>
     </div>
     <div class="skill-category">
@@ -423,48 +423,43 @@
       <div class="skill-tags">
         <span class="skill-tag">Wazuh</span>
         <span class="skill-tag">Splunk</span>
-        <span class="skill-tag">ELK Stack</span>
-        <span class="skill-tag">Graylog</span>
+        <span class="skill-tag">Microsoft Sentinel</span>
       </div>
     </div>
     <div class="skill-category">
-      <div class="skill-cat-title"><i class="fas fa-bug"></i> Threat Detection</div>
+      <div class="skill-cat-title"><i class="fas fa-envelope-open-text"></i> Email &amp; Phishing Analysis</div>
       <div class="skill-tags">
-        <span class="skill-tag">YARA Rules</span>
-        <span class="skill-tag">Sigma Rules</span>
-        <span class="skill-tag">IOC Analysis</span>
-        <span class="skill-tag">Log Correlation</span>
+        <span class="skill-tag">Email Header Analysis</span>
+        <span class="skill-tag">Phishing Investigation</span>
+        <span class="skill-tag">VirusTotal</span>
         <span class="skill-tag">Alert Triage</span>
       </div>
     </div>
     <div class="skill-category">
-      <div class="skill-cat-title"><i class="fas fa-file-code"></i> OS &amp; Log Analysis</div>
+      <div class="skill-cat-title"><i class="fas fa-file-code"></i> Log &amp; Event Analysis</div>
       <div class="skill-tags">
+        <span class="skill-tag">Windows Event Viewer</span>
         <span class="skill-tag">Windows Event Logs</span>
-        <span class="skill-tag">Linux Syslog</span>
-        <span class="skill-tag">Event Viewer</span>
-        <span class="skill-tag">PowerShell</span>
-        <span class="skill-tag">Bash</span>
+        <span class="skill-tag">MITRE ATT&amp;CK</span>
+        <span class="skill-tag">IOC Triage</span>
       </div>
     </div>
     <div class="skill-category">
-      <div class="skill-cat-title"><i class="fas fa-envelope-open-text"></i> Email Security</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Phishing Analysis</span>
-        <span class="skill-tag">Header Analysis</span>
-        <span class="skill-tag">URL Inspection</span>
-        <span class="skill-tag">VirusTotal</span>
-        <span class="skill-tag">Any.run</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-title"><i class="fas fa-terminal"></i> General Tools</div>
+      <div class="skill-cat-title"><i class="fas fa-terminal"></i> Programming &amp; Scripting</div>
       <div class="skill-tags">
         <span class="skill-tag">Python</span>
-        <span class="skill-tag">Git / GitHub</span>
-        <span class="skill-tag">VirtualBox</span>
-        <span class="skill-tag">Kali Linux</span>
-        <span class="skill-tag">Ubuntu Server</span>
+        <span class="skill-tag">Brute-Force Detector (Python)</span>
+        <span class="skill-tag">SQL Injection Detection</span>
+        <span class="skill-tag">XSS Detection</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title"><i class="fas fa-bug"></i> Malware &amp; Threat Analysis</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Malware Types &amp; Behavior</span>
+        <span class="skill-tag">VirusTotal Analysis</span>
+        <span class="skill-tag">Sandbox Investigation</span>
+        <span class="skill-tag">Incident Triage</span>
       </div>
     </div>
   </div>
@@ -686,48 +681,6 @@
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
-<section id="certifications">
-  <div class="fade-in">
-    <div class="section-label">Credentials</div>
-    <h2 class="section-title">Certifications &amp; Learning</h2>
-    <p class="section-sub">Continuous learning through recognized platforms and certification programs.</p>
-  </div>
-  <div class="cert-grid fade-in">
-    <div class="cert-card">
-      <div class="cert-icon"><i class="fas fa-shield-halved"></i></div>
-      <div>
-        <div class="cert-name">Google Cybersecurity Certificate</div>
-        <div class="cert-issuer">Google · Coursera</div>
-        <span class="cert-status">✓ Completed</span>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-icon"><i class="fas fa-flag"></i></div>
-      <div>
-        <div class="cert-name">TryHackMe — SOC Level 1</div>
-        <div class="cert-issuer">TryHackMe Platform</div>
-        <span class="cert-status">✓ Completed</span>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
-      <div>
-        <div class="cert-name">Networking Fundamentals</div>
-        <div class="cert-issuer">Cisco Networking Academy</div>
-        <span class="cert-status">✓ Completed</span>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-icon"><i class="fas fa-magnifying-glass"></i></div>
-      <div>
-        <div class="cert-name">Digital Forensics Essentials</div>
-        <div class="cert-issuer">EC-Council · CodeRed</div>
-        <span class="cert-status">✓ Completed</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CONTACT -->
 <section id="contact">
