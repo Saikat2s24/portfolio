@@ -42,4 +42,5 @@ I'm **Saikat Sen**, a cybersecurity enthusiast and aspiring SOC Analyst passiona
 
 - 🌐 Portfolio: [saikat2s24.github.io/portfolio](https://saikat2s24.github.io/portfolio/)
 - 💼 GitHub: [github.com/Saikat2s24](https://github.com/Saikat2s24)
-- 🔗 LinkedIn: [linkedin.com/in/saikatsen](https://linkedin.com/in/saikatsen)
+- 🔗 LinkedIn: [linkedin.com/in/saikat-sen](https://www.linkedin.com/in/saikat-sen-9a7a5b200)
+- 📧 Email: saikatsen371@gmail.com
