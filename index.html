@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saikat Sen | Cybersecurity Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary:   #0d9488;
+      --primary-d: #0f766e;
+      --accent:    #0ea5e9;
+      --dark:      #0f172a;
+      --mid:       #334155;
+      --muted:     #64748b;
+      --light:     #f1f5f9;
+      --white:     #ffffff;
+      --card-bg:   #ffffff;
+      --border:    #e2e8f0;
+      --shadow:    0 4px 24px rgba(0,0,0,.08);
+      --radius:    14px;
+      --transition: .3s cubic-bezier(.4,0,.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6%; height: 68px;
+      background: rgba(255,255,255,.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 12px rgba(0,0,0,.06);
+    }
+    .nav-logo {
+      font-size: 1.3rem; font-weight: 800; color: var(--primary);
+      letter-spacing: -0.5px; text-decoration: none;
+    }
+    .nav-logo span { color: var(--dark); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--mid); font-weight: 500; font-size: .95rem;
+      transition: color var(--transition); position: relative; padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--primary);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--mid); border-radius: 2px; transition: var(--transition); }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 100px 6% 60px;
+      background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 50%, #f8fafc 100%);
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; top: -120px; right: -120px;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(13,148,136,.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    #hero::after {
+      content: '';
+      position: absolute; bottom: -80px; left: 10%;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(14,165,233,.10) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-content { max-width: 680px; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(13,148,136,.1); border: 1px solid rgba(13,148,136,.25);
+      color: var(--primary); padding: 6px 16px; border-radius: 99px;
+      font-size: .82rem; font-weight: 600; letter-spacing: .5px;
+      margin-bottom: 1.4rem; text-transform: uppercase;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1.15;
+      color: var(--dark); letter-spacing: -1px; margin-bottom: .7rem;
+    }
+    .hero-content h1 span { color: var(--primary); }
+    .hero-subtitle {
+      font-size: 1.15rem; color: var(--muted); margin-bottom: 1.4rem; font-weight: 500;
+    }
+    .hero-subtitle .typed-text { color: var(--primary-d); font-weight: 600; }
+    .cursor { animation: blink 1s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-desc { font-size: 1.02rem; color: var(--mid); margin-bottom: 2.2rem; max-width: 560px; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px; border-radius: 10px;
+      font-size: .95rem; font-weight: 600; cursor: pointer;
+      text-decoration: none; transition: var(--transition); border: none;
+    }
+    .btn-primary {
+      background: var(--primary); color: #fff;
+      box-shadow: 0 4px 18px rgba(13,148,136,.35);
+    }
+    .btn-primary:hover { background: var(--primary-d); box-shadow: 0 6px 24px rgba(13,148,136,.45); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+    .btn-outline:hover { background: var(--primary); color: #fff; transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem;
+      padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1; }
+    .stat-label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-top: 4px; }
+
+    /* ── Section Shell ── */
+    section { padding: 90px 6%; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--primary); font-size: .8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: .8rem;
+    }
+    .section-label::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--primary); }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; color: var(--dark); margin-bottom: .6rem; letter-spacing: -0.5px; }
+    .section-sub { color: var(--muted); font-size: 1rem; max-width: 540px; margin-bottom: 3rem; }
+
+    /* ── About ── */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-img-wrap {
+      position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 1;
+      background: linear-gradient(135deg, #ccfbf1, #bae6fd);
+      display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow);
+    }
+    .about-img-wrap i { font-size: 7rem; color: var(--primary); opacity: .35; }
+    .about-card {
+      background: var(--light); border-radius: var(--radius);
+      padding: 1rem 1.4rem; display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1rem; border-left: 4px solid var(--primary);
+    }
+    .about-card i { color: var(--primary); font-size: 1.2rem; width: 22px; }
+    .about-card p { font-size: .9rem; color: var(--mid); }
+    .about-card strong { color: var(--dark); display: block; font-size: .82rem; margin-bottom: 2px; text-transform: uppercase; letter-spacing: .4px; }
+    .about-text p { color: var(--mid); margin-bottom: 1.2rem; font-size: 1rem; }
+
+    /* ── Skills ── */
+    #skills { background: var(--light); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.6rem; }
+    .skill-category {
+      background: var(--white); border-radius: var(--radius);
+      padding: 1.8rem; border: 1px solid var(--border); box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .skill-category:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.12); }
+    .skill-cat-title { display: flex; align-items: center; gap: 10px; font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 1.2rem; }
+    .skill-cat-title i { color: var(--primary); font-size: 1.1rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .skill-tag {
+      background: var(--light); color: var(--mid);
+      padding: 5px 12px; border-radius: 99px; font-size: .82rem; font-weight: 500;
+      border: 1px solid var(--border); transition: var(--transition);
+    }
+    .skill-tag:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    /* ── Projects ── */
+    #projects { background: var(--white); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.8rem; }
+    .project-card {
+      background: var(--card-bg); border-radius: var(--radius);
+      border: 1px solid var(--border); box-shadow: var(--shadow);
+      overflow: hidden; transition: transform var(--transition), box-shadow var(--transition);
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.14); }
+    .project-header {
+      padding: 1.6rem 1.6rem 1rem;
+      background: linear-gradient(135deg, #f0fdfa, #e0f2fe);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .project-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--primary); display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.2rem; flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(13,148,136,.3);
+    }
+    .project-num { font-size: .75rem; font-weight: 700; color: var(--muted); font-family: 'Fira Code', monospace; }
+    .project-name { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-top: 2px; }
+    .project-body { padding: 1.4rem 1.6rem; flex: 1; }
+    .project-desc { color: var(--mid); font-size: .92rem; margin-bottom: 1.2rem; }
+    .project-tools { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1.2rem; }
+    .tool-tag {
+      background: rgba(13,148,136,.08); color: var(--primary);
+      border: 1px solid rgba(13,148,136,.2);
+      padding: 3px 10px; border-radius: 99px; font-size: .78rem; font-weight: 600;
+    }
+    .project-highlights { list-style: none; }
+    .project-highlights li {
+      font-size: .88rem; color: var(--mid); padding: 4px 0;
+      padding-left: 18px; position: relative;
+    }
+    .project-highlights li::before { content: '▶'; position: absolute; left: 0; color: var(--primary); font-size: .6rem; top: 7px; }
+    .project-footer { padding: 1rem 1.6rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--primary); font-size: .88rem; font-weight: 600;
+      text-decoration: none; transition: gap var(--transition);
+    }
+    .project-link:hover { gap: 10px; }
+
+    /* ── Certifications ── */
+    #certifications { background: var(--light); }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; }
+    .cert-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 1.6rem; border: 1px solid var(--border); box-shadow: var(--shadow);
+      display: flex; align-items: flex-start; gap: 1rem; transition: transform var(--transition);
+    }
+    .cert-card:hover { transform: translateY(-3px); }
+    .cert-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.1rem; flex-shrink: 0;
+    }
+    .cert-name { font-size: .95rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .cert-issuer { font-size: .82rem; color: var(--muted); }
+    .cert-status { display: inline-block; margin-top: 8px; background: rgba(13,148,136,.1); color: var(--primary); font-size: .75rem; font-weight: 600; padding: 2px 10px; border-radius: 99px; }
+
+    /* ── Contact ── */
+    #contact { background: var(--white); }
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-info h3 { font-size: 1.4rem; font-weight: 700; color: var(--dark); margin-bottom: .8rem; }
+    .contact-info p { color: var(--mid); margin-bottom: 2rem; font-size: .97rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none; color: var(--dark);
+      background: var(--light); border-radius: 12px;
+      padding: 1rem 1.4rem; border: 1px solid var(--border); transition: var(--transition);
+    }
+    .contact-link:hover { border-color: var(--primary); background: rgba(13,148,136,.05); transform: translateX(4px); }
+    .contact-link .link-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-link .link-label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+    .contact-link .link-value { font-size: .95rem; font-weight: 600; color: var(--dark); margin-top: 2px; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: .85rem; font-weight: 600; color: var(--mid); }
+    .form-group input, .form-group textarea {
+      padding: 12px 16px; border-radius: 10px; border: 1.5px solid var(--border);
+      font-size: .95rem; font-family: 'Inter', sans-serif; color: var(--dark);
+      background: var(--light); outline: none; transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(13,148,136,.12); background: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .btn-submit {
+      background: var(--primary); color: #fff; padding: 13px; border-radius: 10px;
+      font-size: .95rem; font-weight: 600; cursor: pointer; border: none; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-submit:hover { background: var(--primary-d); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13,148,136,.35); }
+
+    /* ── Footer ── */
+    footer { background: var(--dark); color: #94a3b8; text-align: center; padding: 2.4rem 6%; font-size: .88rem; }
+    footer strong { color: var(--primary); }
+    .footer-links { display: flex; justify-content: center; gap: 1.6rem; margin-top: 1rem; }
+    .footer-links a { color: #94a3b8; text-decoration: none; transition: color var(--transition); font-size: .85rem; }
+    .footer-links a:hover { color: var(--primary); }
+
+    /* ── Scroll to top ── */
+    #scroll-top {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--primary); color: #fff; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+      box-shadow: 0 4px 16px rgba(13,148,136,.4); opacity: 0; transform: translateY(20px);
+      transition: var(--transition); z-index: 99;
+    }
+    #scroll-top.visible { opacity: 1; transform: translateY(0); }
+    #scroll-top:hover { background: var(--primary-d); transform: translateY(-3px); }
+
+    /* ── Responsive ── */
+    @media(max-width: 900px) {
+      .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+      .about-img-wrap { max-width: 300px; margin: 0 auto; }
+    }
+    @media(max-width: 680px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); padding: 1.5rem 5%; gap: 1.2rem; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      #hero { padding: 90px 5% 50px; }
+      section { padding: 60px 5%; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Fade-in ── */
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Saikat<span>Sen</span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><i class="fas fa-shield-halved"></i> Cybersecurity Portfolio</div>
+    <h1>Hi, I'm <span>Saikat Sen</span></h1>
+    <p class="hero-subtitle">
+      <span class="typed-text" id="typed"></span><span class="cursor">|</span>
+    </p>
+    <p class="hero-desc">
+      Passionate cybersecurity analyst specializing in threat detection, digital forensics,
+      and incident response. I build real-world home labs to investigate threats, analyze
+      network traffic, and defend against modern cyber attacks.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary"><i class="fas fa-folder-open"></i> View Projects</a>
+      <a href="https://github.com/Saikat2s24" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub Profile</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Lab Projects</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Tools Mastered</div></div>
+      <div class="stat"><div class="stat-num">SOC</div><div class="stat-label">Level 1 Analyst</div></div>
+      <div class="stat"><div class="stat-num">Blue</div><div class="stat-label">Team Focus</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="fade-in">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-title">About Me</h2>
+    <p class="section-sub">A driven cybersecurity enthusiast with a hands-on approach to security operations.</p>
+  </div>
+  <div class="about-grid fade-in">
+    <div class="about-img-wrap">
+      <i class="fas fa-user-shield"></i>
+    </div>
+    <div class="about-text">
+      <p>
+        I'm <strong>Saikat Sen</strong>, a cybersecurity enthusiast and aspiring SOC Analyst with a deep passion
+        for understanding how attackers operate — and how to stop them. I build hands-on labs to simulate
+        real-world attack scenarios and practice defensive techniques.
+      </p>
+      <p>
+        My work spans across network forensics, log analysis, phishing detection, brute-force mitigation,
+        and SIEM deployment. I believe the best way to defend systems is to thoroughly understand how they
+        are attacked, making every project a step toward becoming a stronger defender.
+      </p>
+      <p>
+        I'm continuously expanding my skills through self-driven research, CTF challenges, and building
+        practical security labs that reflect real enterprise environments.
+      </p>
+      <div class="about-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <div><strong>Location</strong><p>India</p></div>
+      </div>
+      <div class="about-card">
+        <i class="fab fa-github"></i>
+        <div><strong>GitHub</strong><p>github.com/Saikat2s24</p></div>
+      </div>
+      <div class="about-card">
+        <i class="fas fa-briefcase"></i>
+        <div><strong>Focus Area</strong><p>SOC Analysis · Threat Detection · Digital Forensics</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="fade-in">
+    <div class="section-label">Expertise</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-sub">Tools and technologies I use to investigate, detect, and respond to threats.</p>
+  </div>
+  <div class="skills-grid fade-in">
+    <div class="skill-category">
+      <div class="skill-cat-title"><i class="fas fa-network-wired"></i> Network Analysis</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Wireshark</span>
+        <span class="skill-tag">Nmap</span>
+        <span class="skill-tag">Tcpdump</span>
+        <span class="skill-tag">NetworkMiner</span>
+        <span class="skill-tag">Zeek</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title"><i class="fas fa-eye"></i> SIEM &amp; Monitoring</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Wazuh</span>
+        <span class="skill-tag">Splunk</span>
+        <span class="skill-tag">ELK Stack</span>
+        <span class="skill-tag">Graylog</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title"><i class="fas fa-bug"></i> Threat Detection</div>
+      <div class="skill-tags">
+        <span class="skill-tag">YARA Rules</span>
+        <span class="skill-tag">Sigma Rules</span>
+        <span class="skill-tag">IOC Analysis</span>
+        <span class="skill-tag">Log Correlation</span>
+        <span class="skill-tag">Alert Triage</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title"><i class="fas fa-file-code"></i> OS &amp; Log Analysis</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Windows Event Logs</span>
+        <span class="skill-tag">Linux Syslog</span>
+        <span class="skill-tag">Event Viewer</span>
+        <span class="skill-tag">PowerShell</span>
+        <span class="skill-tag">Bash</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title"><i class="fas fa-envelope-open-text"></i> Email Security</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Phishing Analysis</span>
+        <span class="skill-tag">Header Analysis</span>
+        <span class="skill-tag">URL Inspection</span>
+        <span class="skill-tag">VirusTotal</span>
+        <span class="skill-tag">Any.run</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title"><i class="fas fa-terminal"></i> General Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Git / GitHub</span>
+        <span class="skill-tag">VirtualBox</span>
+        <span class="skill-tag">Kali Linux</span>
+        <span class="skill-tag">Ubuntu Server</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="fade-in">
+    <div class="section-label">My Work</div>
+    <h2 class="section-title">Security Lab Projects</h2>
+    <p class="section-sub">Hands-on security investigations built in real lab environments to simulate enterprise-level threats.</p>
+  </div>
+  <div class="projects-grid fade-in">
+
+    <!-- 01 -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+        <div>
+          <div class="project-num">Project 01</div>
+          <div class="project-name">Network Investigation</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Performed deep-dive network traffic analysis to identify suspicious connections,
+          lateral movement, and potential data exfiltration patterns within a simulated enterprise environment.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">Wireshark</span>
+          <span class="tool-tag">Nmap</span>
+          <span class="tool-tag">Tcpdump</span>
+          <span class="tool-tag">NetworkMiner</span>
+        </div>
+        <ul class="project-highlights">
+          <li>Captured and filtered live network packets to detect anomalies</li>
+          <li>Identified unauthorized port scanning and suspicious outbound traffic</li>
+          <li>Reconstructed TCP sessions to uncover potential exfiltration</li>
+          <li>Documented full investigation report with IOCs</li>
+        </ul>
+      </div>
+      <div class="project-footer">
+        <a href="https://github.com/Saikat2s24/01-Network-Investigation" target="_blank" class="project-link">
+          View on GitHub <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-icon"><i class="fas fa-scroll"></i></div>
+        <div>
+          <div class="project-num">Project 02</div>
+          <div class="project-name">Windows Event Analysis</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Investigated Windows Security Event Logs to detect unauthorized access, privilege escalation,
+          account enumeration, and persistence mechanisms on a Windows endpoint.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">Event Viewer</span>
+          <span class="tool-tag">PowerShell</span>
+          <span class="tool-tag">Sysmon</span>
+          <span class="tool-tag">Sigma</span>
+        </div>
+        <ul class="project-highlights">
+          <li>Analyzed Event IDs 4624, 4625, 4648, 4720 for account activity</li>
+          <li>Detected failed login attempts and privilege abuse (Event ID 4672)</li>
+          <li>Correlated Sysmon logs with process creation and network events</li>
+          <li>Mapped findings to MITRE ATT&amp;CK framework techniques</li>
+        </ul>
+      </div>
+      <div class="project-footer">
+        <a href="https://github.com/Saikat2s24/02-Windows-Event-Analysis" target="_blank" class="project-link">
+          View on GitHub <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-icon"><i class="fas fa-fish"></i></div>
+        <div>
+          <div class="project-num">Project 03</div>
+          <div class="project-name">Phishing Investigation</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Conducted a thorough analysis of phishing emails including header inspection,
+          URL detonation, and malicious attachment analysis to identify attacker infrastructure.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">VirusTotal</span>
+          <span class="tool-tag">Any.run</span>
+          <span class="tool-tag">MXToolbox</span>
+          <span class="tool-tag">URLScan.io</span>
+        </div>
+        <ul class="project-highlights">
+          <li>Analyzed email headers to trace origin and detect spoofing</li>
+          <li>Detonated malicious URLs in a sandbox environment</li>
+          <li>Extracted and analyzed embedded malicious payloads</li>
+          <li>Identified attacker C2 infrastructure via OSINT</li>
+        </ul>
+      </div>
+      <div class="project-footer">
+        <a href="https://github.com/Saikat2s24/03-Phishing-Investigation" target="_blank" class="project-link">
+          View on GitHub <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-icon"><i class="fas fa-lock"></i></div>
+        <div>
+          <div class="project-num">Project 04</div>
+          <div class="project-name">Brute-Force Detection</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Simulated and detected SSH and RDP brute-force attacks using authentication log analysis
+          and SIEM alert rules, then implemented countermeasures to block and prevent further attacks.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">Hydra</span>
+          <span class="tool-tag">Fail2Ban</span>
+          <span class="tool-tag">Wazuh</span>
+          <span class="tool-tag">Auth Logs</span>
+        </div>
+        <ul class="project-highlights">
+          <li>Simulated SSH brute-force attack using Hydra from attacker VM</li>
+          <li>Detected high-volume failed auth attempts in auth.log</li>
+          <li>Created Wazuh detection rules for brute-force alerting</li>
+          <li>Implemented Fail2Ban rules to auto-block offending IPs</li>
+        </ul>
+      </div>
+      <div class="project-footer">
+        <a href="https://github.com/Saikat2s24/04-Brute-Force-Detection" target="_blank" class="project-link">
+          View on GitHub <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-icon"><i class="fas fa-wave-square"></i></div>
+        <div>
+          <div class="project-num">Project 05</div>
+          <div class="project-name">Wireshark Investigation</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Used Wireshark to perform deep packet inspection on pre-captured PCAP files to uncover
+          hidden credentials, malware C2 communication, and suspicious protocol usage.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">Wireshark</span>
+          <span class="tool-tag">PCAP Analysis</span>
+          <span class="tool-tag">Zeek</span>
+          <span class="tool-tag">Tshark</span>
+        </div>
+        <ul class="project-highlights">
+          <li>Filtered traffic by protocol to identify malicious HTTP/DNS patterns</li>
+          <li>Extracted cleartext credentials from unencrypted traffic</li>
+          <li>Identified C2 beaconing patterns with regular callback intervals</li>
+          <li>Reconstructed file transfers from raw packet data</li>
+        </ul>
+      </div>
+      <div class="project-footer">
+        <a href="https://github.com/Saikat2s24/05-Wireshark-Investigation" target="_blank" class="project-link">
+          View on GitHub <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- 06 -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-icon"><i class="fas fa-house-laptop"></i></div>
+        <div>
+          <div class="project-num">Project 06</div>
+          <div class="project-name">Wazuh Home Lab</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Built a fully functional Wazuh SIEM home lab from scratch using virtual machines,
+          configured agents, and created custom detection rules to monitor a simulated enterprise network.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">Wazuh</span>
+          <span class="tool-tag">Ubuntu Server</span>
+          <span class="tool-tag">VirtualBox</span>
+          <span class="tool-tag">Elastic Stack</span>
+        </div>
+        <ul class="project-highlights">
+          <li>Deployed Wazuh Manager and Agent on separate virtual machines</li>
+          <li>Configured file integrity monitoring (FIM) and active response</li>
+          <li>Wrote custom detection rules for specific threat scenarios</li>
+          <li>Monitored and triaged real alerts via Wazuh dashboard</li>
+        </ul>
+      </div>
+      <div class="project-footer">
+        <a href="https://github.com/Saikat2s24/06-Wazuh-Home-Lab" target="_blank" class="project-link">
+          View on GitHub <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="fade-in">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certifications &amp; Learning</h2>
+    <p class="section-sub">Continuous learning through recognized platforms and certification programs.</p>
+  </div>
+  <div class="cert-grid fade-in">
+    <div class="cert-card">
+      <div class="cert-icon"><i class="fas fa-shield-halved"></i></div>
+      <div>
+        <div class="cert-name">Google Cybersecurity Certificate</div>
+        <div class="cert-issuer">Google · Coursera</div>
+        <span class="cert-status">✓ Completed</span>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><i class="fas fa-flag"></i></div>
+      <div>
+        <div class="cert-name">TryHackMe — SOC Level 1</div>
+        <div class="cert-issuer">TryHackMe Platform</div>
+        <span class="cert-status">✓ Completed</span>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
+      <div>
+        <div class="cert-name">Networking Fundamentals</div>
+        <div class="cert-issuer">Cisco Networking Academy</div>
+        <span class="cert-status">✓ Completed</span>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><i class="fas fa-magnifying-glass"></i></div>
+      <div>
+        <div class="cert-name">Digital Forensics Essentials</div>
+        <div class="cert-issuer">EC-Council · CodeRed</div>
+        <span class="cert-status">✓ Completed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="fade-in">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Contact Me</h2>
+    <p class="section-sub">Interested in collaborating or have a question? Feel free to reach out!</p>
+  </div>
+  <div class="contact-wrapper fade-in">
+    <div class="contact-info">
+      <h3>Let's Connect</h3>
+      <p>
+        I'm always open to discussing cybersecurity projects, internship opportunities,
+        or just geeking out about the latest threats and defenses.
+      </p>
+      <div class="contact-links">
+        <a href="https://github.com/Saikat2s24" target="_blank" class="contact-link">
+          <div class="link-icon"><i class="fab fa-github"></i></div>
+          <div>
+            <div class="link-label">GitHub</div>
+            <div class="link-value">github.com/Saikat2s24</div>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/saikatsen" target="_blank" class="contact-link">
+          <div class="link-icon"><i class="fab fa-linkedin-in"></i></div>
+          <div>
+            <div class="link-label">LinkedIn</div>
+            <div class="link-value">linkedin.com/in/saikatsen</div>
+          </div>
+        </a>
+        <a href="mailto:saikat@email.com" class="contact-link">
+          <div class="link-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="link-label">Email</div>
+            <div class="link-value">saikat@email.com</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" placeholder="John Doe" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="john@example.com" required />
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Your message here..." required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">
+        <i class="fas fa-paper-plane"></i> Send Message
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed &amp; Built by <strong>Saikat Sen</strong> &nbsp;·&nbsp; Cybersecurity Portfolio 2025</p>
+  <div class="footer-links">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="https://github.com/Saikat2s24" target="_blank">GitHub</a>
+  </div>
+</footer>
+
+<!-- Scroll to Top -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+  // Typed effect
+  const roles = ['SOC Analyst','Cybersecurity Enthusiast','Network Investigator','Threat Hunter','Blue Team Defender'];
+  let roleIdx = 0, charIdx = 0, deleting = false;
+  const typedEl = document.getElementById('typed');
+  function type() {
+    const current = roles[roleIdx];
+    if (deleting) {
+      typedEl.textContent = current.slice(0, charIdx--);
+      if (charIdx < 0) { deleting = false; roleIdx = (roleIdx + 1) % roles.length; setTimeout(type, 500); return; }
+    } else {
+      typedEl.textContent = current.slice(0, charIdx++);
+      if (charIdx > current.length) { deleting = true; setTimeout(type, 1800); return; }
+    }
+    setTimeout(type, deleting ? 50 : 90);
+  }
+  type();
+
+  // Mobile nav
+  function toggleNav() { document.getElementById('nav-links').classList.toggle('open'); }
+
+  // Scroll-to-top button
+  const scrollBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => { scrollBtn.classList.toggle('visible', window.scrollY > 400); });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Contact form feedback
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+    btn.style.background = '#16a34a';
+    setTimeout(() => { btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message'; btn.style.background = ''; e.target.reset(); }, 3000);
+  }
+</script>
+</body>
+</html>
